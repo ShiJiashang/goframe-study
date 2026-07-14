@@ -1,3 +1,7 @@
 .DS_Store
 *.log
 /test/
+/bin/
+/temp/
+main
+main.exe

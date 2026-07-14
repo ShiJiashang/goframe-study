@@ -1,0 +1,32 @@
+server:
+  address: ":8000"
+  openapiPath: "/api.json"
+  swaggerPath: "/swagger"
+
+app:
+  name: "GoFrame Mall"
+  env: "docker"
+  debug: false
+
+logger:
+  level: "info"
+  stdout: true
+
+database:
+  default:
+    link: "mysql:root:local-mall-password@tcp(mysql:3306)/goframe_mall?parseTime=true&loc=Local"
+    debug: false
+    maxIdle: 10
+    maxOpen: 20
+    maxLifeTime: "30m"
+
+redis:
+  default:
+    address: "redis:6379"
+    db: 0
+
+payment:
+  baseURL: "http://mock-payment:9001"
+
+auth:
+  jwtSecret: "local-compose-only-change-me"

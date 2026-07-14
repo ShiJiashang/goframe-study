@@ -19,6 +19,21 @@ type CreateProductRes struct {
 	PriceCent int64  `json:"priceCent"`
 }
 
+type GetProductReq struct {
+	g.Meta `path:"/products/:id" method:"get" tags:"Product" summary:"Get product"`
+
+	ID            int64  `json:"id" in:"path"`
+	Page          int    `json:"page" in:"query"`
+	Authorization string `json:"Authorization" in:"header"`
+}
+
+type GetProductRes struct {
+	ID            int64  `json:"id"`
+	Name          string `json:"name"`
+	Page          int    `json:"page"`
+	Authorization string `json:"authorization"`
+}
+
 type ProductController struct{}
 
 func (controller *ProductController) Create(
@@ -29,6 +44,19 @@ func (controller *ProductController) Create(
 		ID:        1001,
 		Name:      req.Name,
 		PriceCent: req.PriceCent,
+	}
+	return
+}
+
+func (controller *ProductController) Get(
+	ctx context.Context,
+	req *GetProductReq,
+) (res *GetProductRes, err error) {
+	res = &GetProductRes{
+		ID:            req.ID,
+		Name:          "GoFrame Book",
+		Page:          req.Page,
+		Authorization: req.Authorization,
 	}
 	return
 }
